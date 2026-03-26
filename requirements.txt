@@ -3,3 +3,7 @@ numpy
 scipy
 pandas
 matplotlib
+# GNN dependencies (Option B — graph-neural-network transport surrogate)
+torch>=2.6.0
+torch_geometric>=2.6.1
+scikit-learn>=1.6.0
