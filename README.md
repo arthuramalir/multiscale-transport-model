@@ -21,6 +21,35 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
+## GNN Surrogate Model
+
+The repository also includes a graph neural network surrogate for predicting
+log10(D_eff) from regenerated Voronoi pore networks.
+
+Entry points are in `CODE/gnn/`:
+
+- `data_pipeline.py` - deterministic graph construction + `.pt` caching
+- `model.py` - `PoreNetGNN` architecture
+- `train.py` - train/validation/test pipeline with Ridge baseline
+
+Quick start on the constant-density 1e12 dataset:
+
+```bash
+python -m CODE.gnn.train \
+  --csv "CODE/FINAL SET/const_density_1e12/sweep_const_density_1e12_full.csv" \
+  --cache CODE/gnn/cache/1e12 \
+  --out CODE/gnn/results/1e12 \
+  --epochs 150 --max-samples 200
+```
+
+Quick-run benchmark (2026-03-25, 200 samples):
+
+- GNN test: R2=0.9526, MAE=0.1751, RMSE=0.2439
+- Ridge test: R2=0.6506, MAE=0.5138, RMSE=0.6625
+
+Outputs are written under `CODE/gnn/results/1e12/` including
+`best_model.pt`, plots, and `results_summary.json`.
+
 ## Running REV Sweeps
 
 Constant-density sweeps are driven by:

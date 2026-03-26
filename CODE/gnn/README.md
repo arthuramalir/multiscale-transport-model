@@ -88,6 +88,18 @@ python -m CODE.gnn.train \
 
 Add `--max-samples 200` to do a quick smoke-test on a subset.
 
+### Latest smoke-test benchmark
+
+Run on 2026-03-25 with `--max-samples 200`, `--epochs 150`:
+
+- Split: train=140, val=30, test=30
+- Model parameters: 191,617
+- GNN test: R2=0.9526, MAE=0.1751, RMSE=0.2439
+- Ridge baseline test: R2=0.6506, MAE=0.5138, RMSE=0.6625
+- Delta R2 (GNN - Ridge): +0.3020
+
+Artifacts were saved to `CODE/gnn/results/1e12/`.
+
 ### 3. Inspect outputs
 
 After training, `CODE/gnn/results/1e12/` will contain:
